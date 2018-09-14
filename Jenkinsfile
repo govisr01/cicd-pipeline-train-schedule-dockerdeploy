@@ -14,7 +14,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("janadon/train-schedule")
+                    app = docker.build("govisr01/train-schedule")
                     app.inside {
                         sh 'echo $(curl localhost:8080)'
                     }
@@ -27,7 +27,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'govisr01') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
